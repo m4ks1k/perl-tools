@@ -5,9 +5,11 @@ use utf8;
 use DBI;
 use Data::Dumper;
 
-my ($src_file, $server, $db, $user, $pass) = @ARGV;
+my ($src_file, $server, $db, $user, $pass, $port) = @ARGV;
 
-my $dbh = DBI->connect("dbi:Pg:dbname=$db;host=$server;port=5432",
+$port ||= 5432;
+
+my $dbh = DBI->connect("dbi:Pg:dbname=$db;host=$server;port=$port",
                     $user,
                     $pass,
                     {AutoCommit => 1, RaiseError => 1, PrintError => 0}
